@@ -31,29 +31,30 @@ $ mysql -h 172.16.238.11-P 3306 --protocol=TCP -u root -p
                         Inputs
                         Outputs
                 
-2. Functional Logic
-    Supplier
-        GetSupplier >
+2. Functional Logic:
+
+    Supplier>>
+        GetSupplier >>
             - GetProduct
             - UpdateProduct
             - IncludeProduct
         AddSupplier
         UpdateSupplier
 
-    Categorie
+    Categorie>>
         GetCategorie
         AddCategorie
         UpdateCategorie
 
-    CreateInventory
+    CreateInventory>>
         AddInput
         AddOutput
         UpdateCost
         UpdateState
 
-3. Security
-    - Autentication (JWT)
-        -Authorization (ROLES)
+3. Security>>
+    - Autentication (JWT)>>
+        -Authorization (ROLES)>>
             - Filter Supplier
             - Filter Product
 
