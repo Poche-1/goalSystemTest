@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS `inventory`;
+
+USE inventory;
+	
+create table Categorie (id varchar(50), name varchar(255), createAt DATE, primary key (id));
+    insert into Categorie values ('fe2de405-c38e-4c90-ac40-da0540dfb4ef','categoria 1', '2021-01-12'),  ('fe2de405-c38e-4c90-ac21-da0540dfb4ef','categoria 2', '2021-10-12');
+	
+create table Supplier (id varchar(50), name varchar(255), description varchar(255), telephone varchar(255), state varchar(50), primary key (id));
+	insert into Supplier values ('fe2de405-c38e-2c90-ac40-da0540dfb4ef','Proveedor 1', 'Descripcion 1', '123456789','active'),  ('fe2de405-c38e-7c90-ac40-da0540dfb4ef','Proveedor 2', 'Descripcion 2', '123456789','active');
+	
+create table Product (id varchar(50), name varchar(255),  detail varchar(255), idSupplier varchar(255), idCategorie varchar(255),  state varchar(50),  primary key (id));
+	insert into Product values ('pe2de405-c38e-2c90-ac40-da0540dfb4ef','Producto 1', 'Descripcion 1 del producto 1', 'fe2de405-c38e-2c90-ac40-da0540dfb4ef','fe2de405-c38e-4c90-ac40-da0540dfb4ef', 'active'),('pe2de415-c38e-2c90-ac445-da0540dfb4ef','Producto 2', 'Descripcion 1 del producto 2', 'fe2de405-c38e-2c90-ac40-da0540dfb4ef','fe2de405-c38e-4c90-ac40-da0540dfb4ef', 'active'),('pe2de435-c18e-2c90-ac448-da0540dfb4ef','Producto 3', 'Descripcion 1 del producto 3', 'fe2de405-c38e-2c90-ac40-da0540dfb4ef','fe2de405-c38e-4c90-ac21-da0540dfb4ef', 'inactive');
+		
+create table Location (id varchar(50), name varchar(255),  primary key (id));
+	insert into Location values ('lo2de405-c38e-2c90-ac40-da0540dfb4ef','Localizacion 1');
+	
+create table Inventory (id varchar(50), idProduct varchar(255), costo varchar(255), input int, output int, stock int, primary key (id));
+	insert into Inventory values ('in2de405-c38e-2c90-ac40-da0540dfb4ef','pe2de405-c38e-2c90-ac40-da0540dfb4ef','1.000', 15,5,6), ('in3de405-c38e-2c90-ac40-da0540dfb4ef','pe2de415-c38e-2c90-ac40-da0540dfb4ef','2.000', 12,4,5);
+		
+create table Input (id varchar(50), idInventory varchar(255), Und int, date DATE, primary key (id));
+	insert into Input values ('in8de405-c38e-2c90-ac40-da0540dfb4ef', 'in2de405-c38e-2c90-ac40-da0540dfb4ef', 15, '2021-01-12'),('in8de415-c38e-2c90-ac40-da0540dfb4ef', 'in3de405-c38e-2c90-ac40-da0540dfb4ef', 5, '2021-02-12'); 
+	
+create table Output (id varchar(50), idInventory varchar(255), Und int, date DATE, primary key (id));
+    insert into Output values ('in8de405-c38e-2c90-ac40-da0540dfb4ef', 'in2de405-c38e-2c90-ac40-da0540dfb4ef', 6, '2021-11-12'),('in8de415-c38e-2c90-ac40-da0540dfb4ef', 'in3de405-c38e-2c90-ac40-da0540dfb4ef', 4, '2021-12-12'); 
+	

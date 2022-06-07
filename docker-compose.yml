@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+  server:
+    build:
+      dockerfile: Dockerfile5
+      context: .
+    container_name: GoalSystem
+    environment:
+      DB_HOST: "mariadb_host"
+      DB_PORT: "3306"
+      DB_USER: "root"
+      DB_PASS: "p@ss"
+      DB_SCHEMA: "test_go"
+      SERVER_PORT: "8080"
+    ports:
+      - "8080:8080"
+    networks:
+      goalSystem_net:
+        ipv4_address: 172.16.238.10
+        ipv6_address: 2001:3984:3989::10
+
+  
+  database:
+    build: 
+      context: .
+      dockerfile: mariadb.dockerfile
+    container_name: mariadb_svc3
+    environment: 
+      MYSQL_DATABASE: "goalSystem"
+      MYSQL_ROOT_PASSWORD: "goalSystem"
+    volumes: 
+      - ./schemas/:/var/lib/mysql
+    networks:
+      goalSystem_net:
+        aliases: 
+          - mariadb_host
+        ipv4_address: 172.16.238.11
+        ipv6_address: 2001:3984:3989::10
+        
+
+networks:
+  goalSystem_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+        - subnet: "2001:3984:3989::/64"
+
+
+  
