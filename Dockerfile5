@@ -5,6 +5,14 @@ WORKDIR /app
 COPY . ./
 # Restore as distinct layers
 RUN dotnet restore
+RUN dotnet add package Microsoft.EntityFrameworkCore --version 6.0.5
+RUN dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.5
+RUN dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.5
+RUN dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.5
+RUN dotnet add package MySqlConnector --version 2.1.9
+RUN dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.1
+RUN dotnet add package Swashbuckle.AspNetCore --version 6.2.3
+
 # Build and publish a release
 RUN dotnet publish -c Release -o out
 
